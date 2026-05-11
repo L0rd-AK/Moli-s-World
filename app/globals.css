@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FAF7F0;
+    --foreground: #1A1208;
+    --card: #FFFBF7;
+    --card-foreground: #1A1208;
+    --popover: #FFFBF7;
+    --popover-foreground: #1A1208;
+    --primary: #D4851A;
+    --primary-foreground: #FAF7F0;
+    --secondary: #F5F0E6;
+    --secondary-foreground: #1A1208;
+    --muted: #F5F0E6;
+    --muted-foreground: #3D2B1F;
+    --accent: #D4851A;
+    --accent-foreground: #1A1208;
+    --destructive: #0D0906;
+    --destructive-foreground: #FAF7F0;
+    --border: #F5F0E6;
+    --input: #F5F0E6;
+    --ring: #D4851A;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #0D0906;
+    --foreground: #FAF7F0;
+    --card: #1A1208;
+    --card-foreground: #FAF7F0;
+    --popover: #1A1208;
+    --popover-foreground: #FAF7F0;
+    --primary: #F9C846;
+    --primary-foreground: #0D0906;
+    --secondary: #2A1D14;
+    --secondary-foreground: #FAF7F0;
+    --muted: #2A1D14;
+    --muted-foreground: #FAF7F0;
+    --accent: #F9C846;
+    --accent-foreground: #0D0906;
+    --destructive: #FFFBF7;
+    --destructive-foreground: #0D0906;
+    --border: #2A1D14;
+    --input: #2A1D14;
+    --ring: #F9C846;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: 'liga' 1, 'kern' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bengali-text {
+    font-family: var(--font-noto-serif-bengali), serif;
+    line-height: 1.8;
+  }
+  .display-text {
+    font-family: var(--font-playfair-display), serif;
+  }
+}
+
+/* Paper texture background */
+.paper-texture {
+  background-image: url("/paper-texture.svg");
+  background-repeat: repeat;
+  opacity: 0.3;
+}
+
+/* Poetry specific styles */
+.poem-content {
+  white-space: pre-wrap;
+  text-align: center;
+  line-height: 2;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+/* Tiptap editor styles */
+.ProseMirror {
+  font-family: var(--font-noto-serif-bengali), serif;
+  line-height: 1.8;
+  max-width: none;
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #3D2B1F;
+  pointer-events: none;
+  height: 0;
+}
+
+.ProseMirror img {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  max-width: 100%;
+  height: auto;
+}
+
+.ProseMirror code {
+  background-color: var(--muted);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: monospace;
+}
+
+.ProseMirror pre {
+  background-color: var(--muted);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.ProseMirror pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #D4851A;
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+/* Reading progress indicator */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background-color: #D4851A;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #F5F0E6;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #D4851A;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #B86A14;
+}

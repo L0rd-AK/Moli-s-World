@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm install *)",
+      "PowerShell(npm run *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\amit\\\\Downloads\\\\Delete\\\\App\\\\app\" -Recurse -Directory -Force | Where-Object { $_.Name -match '^\\\\[' } | Select-Object FullName)",
+      "PowerShell(Get-ChildItem -LiteralPath \"C:\\\\Users\\\\amit\\\\Downloads\\\\Delete\\\\App\\\\app\" -Recurse -Directory -Force | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Start-Process \"http://localhost:3000\")"
+    ]
+  }
+}
