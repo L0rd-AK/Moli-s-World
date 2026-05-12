@@ -7,7 +7,10 @@
       "PowerShell(Get-ChildItem -LiteralPath \"C:\\\\Users\\\\amit\\\\Downloads\\\\Delete\\\\App\\\\app\" -Recurse -Directory -Force | ForEach-Object { $_.FullName })",
       "PowerShell(Get-Process *)",
       "PowerShell(Start-Process \"http://localhost:3000\")",
-      "PowerShell(git rm -r --cached node_modules/ .next/ .env 2>&1)"
+      "PowerShell(git rm -r --cached node_modules/ .next/ .env 2>&1)",
+      "Bash(npm run *)",
+      "Bash(Start-Process *)",
+      "PowerShell(Get-NetTCPConnection *)"
     ]
   }
 }

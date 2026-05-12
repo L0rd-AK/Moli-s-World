@@ -6,8 +6,8 @@ export default withAuth({
     signIn: '/login',
   },
   callbacks: {
-    authorized: ({ token, request }) => {
-      const path = request.nextUrl.pathname;
+    authorized: ({ token, req }) => {
+      const path = req.nextUrl.pathname;
 
       // Admin routes require admin role
       if (path.startsWith('/dashboard') || path.startsWith('/api/admin')) {
