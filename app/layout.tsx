@@ -71,7 +71,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="bn" suppressHydrationWarning className={`${inter.variable} ${notoSerifBengali.variable} ${playfairDisplay.variable}`}>
-      <body className="min-h-screen  font-bengali text-ink-200 antialiased">
+      <body className="min-h-screen bg-cream-100 font-bengali text-ink-200 antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
