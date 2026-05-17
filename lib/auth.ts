@@ -2,9 +2,10 @@ import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import { compare } from 'bcryptjs';
-import { User, IUser } from '@/models/User';
+import { IUser } from '@/models/User';
 import { clientPromise } from '@/lib/mongodb';
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
+import { ObjectId } from 'mongodb';
 
 export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
@@ -59,7 +60,14 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = user.role;
+        if (user.role) {
+          token.role = user.role;
+        } else {
+          const client = await clientPromise;
+          const db = client.db();
+          const dbUser = await db.collection('users').findOne({ email: user.email });
+          token.role = dbUser?.role || 'reader';
+        }
       }
       return token;
     },
@@ -69,6 +77,16 @@ export const authOptions: NextAuthOptions = {
         session.user.role = token.role as string;
       }
       return session;
+    },
+  },
+  events: {
+    async createUser({ user }) {
+      const client = await clientPromise;
+      const db = client.db();
+      await db.collection('users').updateOne(
+        { _id: new ObjectId(user.id) },
+        { $set: { role: 'reader', createdAt: new Date(), updatedAt: new Date() } }
+      );
     },
   },
   pages: {
