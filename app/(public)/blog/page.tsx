@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { clientPromise } from '@/lib/mongodb';
-import { Post } from '@/models/Post';
+import { IPost } from '@/models/Post';
 import { BlogCard } from '@/components/blog/BlogCard';
 import { Button } from '@/components/ui/button';
 import { PenLine } from 'lucide-react';
@@ -18,7 +18,7 @@ export default async function BlogPage() {
   const db = client.db();
 
   const posts = await db
-    .collection<Post>('posts')
+    .collection<IPost>('posts')
     .find({ status: 'published' })
     .sort({ publishedAt: -1 })
     .toArray();
@@ -68,7 +68,7 @@ export default async function BlogPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (
-              <BlogCard key={post._id.toString()} post={post} />
+              <BlogCard key={post._id!.toString()} post={post} />
             ))}
           </div>
         )}

@@ -19,7 +19,7 @@ export function RecentPosts({ posts }: RecentPostsProps) {
       ) : (
         <ul className="space-y-3">
           {posts.map((post) => (
-            <li key={post._id.toString()} className="flex items-center justify-between">
+            <li key={post._id!.toString()} className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-ink-200 line-clamp-1">
                   {post.title}

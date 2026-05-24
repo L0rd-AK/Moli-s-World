@@ -20,7 +20,7 @@ export default function OpenGraphImage() {
           fontWeight: 700,
         }}
       >
-        বাংলা সাহিত্য
+        মলির দুনিয়া
       </div>
     ),
     size

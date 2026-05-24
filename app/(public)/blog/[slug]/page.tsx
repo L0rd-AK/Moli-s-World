@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { clientPromise } from '@/lib/mongodb';
-import { Post, IPost } from '@/models/Post';
+import { IPost } from '@/models/Post';
 import { CommentSection } from '@/components/comments/CommentSection';
 import { Button } from '@/components/ui/button';
 import { Calendar, Clock, ArrowLeft } from 'lucide-react';
@@ -165,7 +165,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPosts.map((related) => (
                 <Link
-                  key={related._id.toString()}
+                  key={related._id!.toString()}
                   href={`/blog/${related.slug}`}
                   className="bg-cream-50 rounded-lg border border-cream-200 p-4 hover:shadow-md transition-shadow"
                 >
@@ -183,7 +183,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Comments Section */}
         <section className="mt-12">
-          <CommentSection postId={post._id.toString()} />
+          <CommentSection postId={post._id!.toString()} />
         </section>
       </div>
     </div>

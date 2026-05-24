@@ -19,7 +19,7 @@ export function Navigation() {
           <Link href="/" className="flex items-center space-x-2">
             <BookOpen className="h-6 w-6 text-saffron-300" />
             <span className="font-display text-xl font-bold text-ink-200">
-              বাংলা সাহিত্য
+              মলির দুনিয়া 
             </span>
           </Link>
 

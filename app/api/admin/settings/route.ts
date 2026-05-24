@@ -8,7 +8,7 @@ export async function GET() {
     const client = await clientPromise;
     const db = client.db();
 
-    const settings = await db.collection('settings').findOne({ _id: 'site' });
+    const settings = await db.collection('settings').findOne({ _id: 'site' as any });
 
     return NextResponse.json({ settings });
   } catch (error) {
@@ -29,7 +29,7 @@ export async function PUT(request: NextRequest) {
     const db = client.db();
 
     await db.collection('settings').updateOne(
-      { _id: 'site' },
+      { _id: 'site' as any },
       { $set: { ...body, updatedAt: new Date() } },
       { upsert: true }
     );

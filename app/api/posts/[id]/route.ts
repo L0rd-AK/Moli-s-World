@@ -17,7 +17,7 @@ export async function GET(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const postId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    const post = await db.collection<IPost>('posts').findOne({ _id: postId });
+    const post = await db.collection<IPost>('posts').findOne({ _id: postId as any });
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
     }
@@ -60,7 +60,7 @@ export async function PUT(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const postId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    await db.collection<IPost>('posts').updateOne({ _id: postId }, { $set: updates });
+    await db.collection<IPost>('posts').updateOne({ _id: postId as any }, { $set: updates });
 
     return NextResponse.json({ message: 'Post updated' });
   } catch (error) {
@@ -80,7 +80,7 @@ export async function DELETE(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const postId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    await db.collection<IPost>('posts').deleteOne({ _id: postId });
+    await db.collection<IPost>('posts').deleteOne({ _id: postId as any });
 
     return NextResponse.json({ message: 'Post deleted' });
   } catch (error) {

@@ -13,7 +13,7 @@ export function RecentComments({ comments }: RecentCommentsProps) {
       ) : (
         <ul className="space-y-3">
           {comments.map((comment) => (
-            <li key={comment._id.toString()} className="text-sm text-ink-100">
+            <li key={comment._id!.toString()} className="text-sm text-ink-100">
               <p className="font-medium text-ink-200">{comment.author.name}</p>
               <p className="line-clamp-2">{comment.content}</p>
               <p className="text-xs text-ink-50">

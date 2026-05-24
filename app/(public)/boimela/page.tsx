@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { clientPromise } from '@/lib/mongodb';
-import { Review } from '@/models/Review';
+import { IReview } from '@/models/Review';
 import { BookshelfCard } from '@/components/books/BookshelfCard';
 import { Button } from '@/components/ui/button';
 import { BookOpen } from 'lucide-react';
@@ -19,12 +19,12 @@ export default async function BoimelaPage() {
 
   const [reviews, currentlyReading] = await Promise.all([
     db
-      .collection<Review>('reviews')
+      .collection<IReview>('reviews')
       .find({ status: 'published', shelf: { $ne: 'reading' } })
       .sort({ publishedAt: -1 })
       .toArray(),
     db
-      .collection<Review>('reviews')
+      .collection<IReview>('reviews')
       .find({ status: 'published', shelf: 'reading' })
       .sort({ publishedAt: -1 })
       .toArray(),
@@ -78,7 +78,7 @@ export default async function BoimelaPage() {
                 <h2 className="text-xl font-semibold text-ink-200 mb-4">বর্তমানে পড়ছি</h2>
                 <div className="grid grid-cols-1 gap-6">
                   {currentlyReading.map((review) => (
-                    <BookshelfCard key={review._id.toString()} review={review} />
+                    <BookshelfCard key={review._id!.toString()} review={review} />
                   ))}
                 </div>
               </section>
@@ -99,7 +99,7 @@ export default async function BoimelaPage() {
             ) : (
               <div className="grid grid-cols-1 gap-6">
                 {reviews.map((review) => (
-                  <BookshelfCard key={review._id.toString()} review={review} />
+                  <BookshelfCard key={review._id!.toString()} review={review} />
                 ))}
               </div>
             )}

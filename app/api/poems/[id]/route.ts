@@ -17,7 +17,7 @@ export async function GET(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const poemId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    const poem = await db.collection<IPoem>('poems').findOne({ _id: poemId });
+    const poem = await db.collection<IPoem>('poems').findOne({ _id: poemId as any });
     if (!poem) {
       return NextResponse.json({ error: 'Poem not found' }, { status: 404 });
     }
@@ -59,7 +59,7 @@ export async function PUT(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const poemId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    await db.collection<IPoem>('poems').updateOne({ _id: poemId }, { $set: updates });
+    await db.collection<IPoem>('poems').updateOne({ _id: poemId as any }, { $set: updates });
 
     return NextResponse.json({ message: 'Poem updated' });
   } catch (error) {
@@ -79,7 +79,7 @@ export async function DELETE(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const poemId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    await db.collection<IPoem>('poems').deleteOne({ _id: poemId });
+    await db.collection<IPoem>('poems').deleteOne({ _id: poemId as any });
 
     return NextResponse.json({ message: 'Poem deleted' });
   } catch (error) {

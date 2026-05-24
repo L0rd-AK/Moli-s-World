@@ -105,7 +105,7 @@ export default function DashboardPostsPage() {
   };
 
   const handleEdit = (post: IPost) => {
-    setEditingId(post._id.toString());
+    setEditingId(post._id!.toString());
     setForm({
       title: post.title,
       slug: post.slug,
@@ -224,14 +224,14 @@ export default function DashboardPostsPage() {
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-ink-200">সাম্প্রতিক পোস্ট</h2>
             {posts.map((post) => (
-              <div key={post._id.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
+              <div key={post._id!.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
                 <h3 className="font-medium text-ink-200 line-clamp-2">{post.title}</h3>
                 <p className="text-xs text-ink-50 mb-3">{post.status}</p>
                 <div className="flex gap-2">
                   <Button size="sm" variant="outline" onClick={() => handleEdit(post)}>
                     সম্পাদনা
                   </Button>
-                  <Button size="sm" variant="destructive" onClick={() => handleDelete(post._id.toString())}>
+                  <Button size="sm" variant="destructive" onClick={() => handleDelete(post._id!.toString())}>
                     মুছুন
                   </Button>
                 </div>

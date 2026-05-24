@@ -34,7 +34,7 @@ export async function GET(request: Request, { params }: RouteProps) {
     const client = await clientPromise;
     const db = client.db();
     const poemId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
-    const poem = await db.collection<IPoem>('poems').findOne({ _id: poemId, status: 'published' });
+    const poem = await db.collection<IPoem>('poems').findOne({ _id: poemId as any, status: 'published' });
 
     if (!poem) {
       return NextResponse.json({ error: 'Poem not found' }, { status: 404 });
@@ -69,7 +69,7 @@ export async function GET(request: Request, { params }: RouteProps) {
     ctx.fillText('বাংলা সাহিত্য', 80, 560);
 
     const buffer = canvas.toBuffer('image/png');
-    return new NextResponse(buffer, {
+    return new NextResponse(new Uint8Array(buffer), {
       headers: {
         'Content-Type': 'image/png',
         'Cache-Control': 'public, max-age=3600',

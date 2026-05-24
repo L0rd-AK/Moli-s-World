@@ -78,7 +78,7 @@ export default function DashboardCommentsPage() {
             <p className="text-ink-100">কোনও মন্তব্য পাওয়া যায়নি।</p>
           ) : (
             comments.map((comment) => (
-              <div key={comment._id.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
+              <div key={comment._id!.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium text-ink-200">{comment.author.name}</p>
@@ -90,13 +90,13 @@ export default function DashboardCommentsPage() {
                 </div>
                 <p className="bengali-text text-ink-100 mt-3 whitespace-pre-wrap">{comment.content}</p>
                 <div className="flex gap-2 mt-4">
-                  <Button size="sm" onClick={() => updateStatus(comment._id.toString(), 'approved')}>
+                  <Button size="sm" onClick={() => updateStatus(comment._id!.toString(), 'approved')}>
                     অনুমোদন
                   </Button>
-                  <Button size="sm" variant="outline" onClick={() => updateStatus(comment._id.toString(), 'rejected')}>
+                  <Button size="sm" variant="outline" onClick={() => updateStatus(comment._id!.toString(), 'rejected')}>
                     প্রত্যাখ্যান
                   </Button>
-                  <Button size="sm" variant="destructive" onClick={() => deleteComment(comment._id.toString())}>
+                  <Button size="sm" variant="destructive" onClick={() => deleteComment(comment._id!.toString())}>
                     মুছুন
                   </Button>
                 </div>

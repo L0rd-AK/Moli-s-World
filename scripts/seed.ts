@@ -11,7 +11,7 @@ const adminEmail = process.env.SEED_ADMIN_EMAIL || 'admin@example.com';
 const adminPassword = process.env.SEED_ADMIN_PASSWORD || 'change-me';
 
 async function seed() {
-  const client = new MongoClient(uri);
+  const client = new MongoClient(uri!);
   await client.connect();
   const db = client.db();
 

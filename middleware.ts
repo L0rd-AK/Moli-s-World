@@ -11,11 +11,11 @@ export default withAuth({
 
       // Admin routes require admin role
       if (path.startsWith('/dashboard') || path.startsWith('/api/admin')) {
-        return token.role === 'admin';
+        return token?.role === 'admin';
       }
 
       // Allow authenticated users to access everything else
-      if (token.role) {
+      if (token?.role) {
         return true;
       }
 

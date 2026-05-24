@@ -54,7 +54,7 @@ export function BookshelfCard({ review }: BookshelfCardProps) {
                 {new Date(review.publishedAt || review.createdAt).toLocaleDateString('bn-BD')}
               </span>
             </div>
-            <Link href={`/boimela/${review._id.toString()}`}>
+            <Link href={`/boimela/${review._id!.toString()}`}>
               <Button size="sm" variant="outline" className="border-saffron-300 text-saffron-300">
                 রিভিউ পড়ুন
               </Button>

@@ -103,7 +103,7 @@ export default function DashboardReviewsPage() {
   };
 
   const handleEdit = (review: IReview) => {
-    setEditingId(review._id.toString());
+    setEditingId(review._id!.toString());
     setForm({
       bookTitle: review.bookTitle,
       bookAuthor: review.bookAuthor,
@@ -244,14 +244,14 @@ export default function DashboardReviewsPage() {
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-ink-200">সাম্প্রতিক রিভিউ</h2>
             {reviews.map((review) => (
-              <div key={review._id.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
+              <div key={review._id!.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
                 <h3 className="font-medium text-ink-200 line-clamp-2">{review.bookTitle}</h3>
                 <p className="text-xs text-ink-50 mb-3">{review.status}</p>
                 <div className="flex gap-2">
                   <Button size="sm" variant="outline" onClick={() => handleEdit(review)}>
                     সম্পাদনা
                   </Button>
-                  <Button size="sm" variant="destructive" onClick={() => handleDelete(review._id.toString())}>
+                  <Button size="sm" variant="destructive" onClick={() => handleDelete(review._id!.toString())}>
                     মুছুন
                   </Button>
                 </div>

@@ -23,10 +23,10 @@ export function CommentThread({ comments, resourceType, resourceId, onRefresh }:
         <p className="text-center text-ink-100 py-8">এখনও কোনও মন্তব্য নেই। প্রথম মন্তব্যটি দিন!</p>
       ) : (
         topLevelComments.map((comment) => (
-          <div key={comment._id.toString()} className="border-b border-cream-200 pb-6 last:border-b-0">
+          <div key={comment._id!.toString()} className="border-b border-cream-200 pb-6 last:border-b-0">
             <CommentItem
               comment={comment}
-              replies={getReplies(comment._id.toString())}
+              replies={getReplies(comment._id!.toString())}
               resourceType={resourceType}
               resourceId={resourceId}
               onRefresh={onRefresh}
@@ -64,7 +64,7 @@ function CommentItem({
       body: JSON.stringify({
         content: replyContent,
         [`${resourceType}Id`]: resourceId,
-        parentId: comment._id.toString(),
+        parentId: comment._id!.toString(),
       }),
     });
 
@@ -144,7 +144,7 @@ function CommentItem({
       {replies.length > 0 && (
         <div className="mt-4 ml-12 space-y-4">
           {replies.map((reply) => (
-            <div key={reply._id.toString()} className="border-l-2 border-cream-200 pl-4">
+            <div key={reply._id!.toString()} className="border-l-2 border-cream-200 pl-4">
               <div className="flex items-start gap-2">
                 <div className="w-8 h-8 rounded-full bg-cream-200 flex items-center justify-center flex-shrink-0">
                   <span className="text-ink-100 text-sm font-medium">

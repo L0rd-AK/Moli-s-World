@@ -16,7 +16,7 @@ export async function GET(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const reviewId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    const review = await db.collection<IReview>('reviews').findOne({ _id: reviewId });
+    const review = await db.collection<IReview>('reviews').findOne({ _id: reviewId as any });
     if (!review) {
       return NextResponse.json({ error: 'Review not found' }, { status: 404 });
     }
@@ -54,7 +54,7 @@ export async function PUT(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const reviewId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    await db.collection<IReview>('reviews').updateOne({ _id: reviewId }, { $set: updates });
+    await db.collection<IReview>('reviews').updateOne({ _id: reviewId as any }, { $set: updates });
 
     return NextResponse.json({ message: 'Review updated' });
   } catch (error) {
@@ -74,7 +74,7 @@ export async function DELETE(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const reviewId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    await db.collection<IReview>('reviews').deleteOne({ _id: reviewId });
+    await db.collection<IReview>('reviews').deleteOne({ _id: reviewId as any });
 
     return NextResponse.json({ message: 'Review deleted' });
   } catch (error) {

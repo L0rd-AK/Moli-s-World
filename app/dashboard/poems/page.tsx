@@ -106,7 +106,7 @@ export default function DashboardPoemsPage() {
   };
 
   const handleEdit = (poem: IPoem) => {
-    setEditingId(poem._id.toString());
+    setEditingId(poem._id!.toString());
     setForm({
       title: poem.title,
       slug: poem.slug,
@@ -224,14 +224,14 @@ export default function DashboardPoemsPage() {
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-ink-200">সাম্প্রতিক কবিতা</h2>
             {poems.map((poem) => (
-              <div key={poem._id.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
+              <div key={poem._id!.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
                 <h3 className="font-medium text-ink-200 line-clamp-2">{poem.title}</h3>
                 <p className="text-xs text-ink-50 mb-3">{poem.status}</p>
                 <div className="flex gap-2">
                   <Button size="sm" variant="outline" onClick={() => handleEdit(poem)}>
                     সম্পাদনা
                   </Button>
-                  <Button size="sm" variant="destructive" onClick={() => handleDelete(poem._id.toString())}>
+                  <Button size="sm" variant="destructive" onClick={() => handleDelete(poem._id!.toString())}>
                     মুছুন
                   </Button>
                 </div>

@@ -26,13 +26,13 @@ export async function PATCH(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const commentId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    const comment = await db.collection<IComment>('comments').findOne({ _id: commentId });
+    const comment = await db.collection<IComment>('comments').findOne({ _id: commentId as any });
     if (!comment) {
       return NextResponse.json({ error: 'Comment not found' }, { status: 404 });
     }
 
     await db.collection<IComment>('comments').updateOne(
-      { _id: commentId },
+      { _id: commentId as any },
       { $set: { status, updatedAt: new Date() } }
     );
 
@@ -42,7 +42,7 @@ export async function PATCH(request: NextRequest, { params }: RouteProps) {
       const parentKey = comment.postId || comment.poemId || comment.reviewId;
       if (parentKey) {
         const lookupId = ObjectId.isValid(parentKey) ? new ObjectId(parentKey) : parentKey;
-        const parent = await db.collection(collection).findOne({ _id: lookupId });
+        const parent = await db.collection(collection).findOne({ _id: lookupId as any });
         const author = parent?.author;
         if (author?.email) {
           await resend.emails.send({
@@ -81,7 +81,7 @@ export async function DELETE(request: NextRequest, { params }: RouteProps) {
     const db = client.db();
     const commentId = ObjectId.isValid(params.id) ? new ObjectId(params.id) : params.id;
 
-    await db.collection<IComment>('comments').deleteOne({ _id: commentId });
+    await db.collection<IComment>('comments').deleteOne({ _id: commentId as any });
 
     return NextResponse.json({ message: 'Comment deleted' });
   } catch (error) {

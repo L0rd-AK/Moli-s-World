@@ -94,7 +94,7 @@ export default async function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {posts.map((post) => (
                 <article
-                  key={post._id.toString()}
+                  key={post._id!.toString()}
                   className="bg-cream-50 rounded-lg border border-cream-200 overflow-hidden hover:shadow-lg transition-shadow"
                 >
                   {post.coverImage && (
@@ -162,7 +162,7 @@ export default async function HomePage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {poems.map((poem) => (
-                <PoemCard key={poem._id.toString()} poem={poem} featured />
+                <PoemCard key={poem._id!.toString()} poem={poem} featured />
               ))}
             </div>
           )}
@@ -192,7 +192,7 @@ export default async function HomePage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {reviews.map((review) => (
-                <BookshelfCard key={review._id.toString()} review={review} />
+                <BookshelfCard key={review._id!.toString()} review={review} />
               ))}
             </div>
           )}

@@ -80,7 +80,7 @@ export default function DashboardBackupPage() {
             <p className="text-ink-100">কোনও ব্যাকআপ রেকর্ড নেই।</p>
           ) : (
             logs.map((log) => (
-              <div key={log._id.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
+              <div key={log._id!.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-ink-200">{new Date(log.triggeredAt).toLocaleString('bn-BD')}</p>

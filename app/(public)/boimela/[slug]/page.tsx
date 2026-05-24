@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const client = await clientPromise;
   const db = client.db();
   const reviewId = ObjectId.isValid(params.slug) ? new ObjectId(params.slug) : params.slug;
-  const review = await db.collection<IReview>('reviews').findOne({ _id: reviewId, status: 'published' });
+  const review = await db.collection<IReview>('reviews').findOne({ _id: reviewId as any, status: 'published' });
 
   if (!review) {
     return { title: 'Review not found' };
@@ -42,7 +42,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
   const db = client.db();
   const reviewId = ObjectId.isValid(params.slug) ? new ObjectId(params.slug) : params.slug;
 
-  const review = await db.collection<IReview>('reviews').findOne({ _id: reviewId, status: 'published' });
+  const review = await db.collection<IReview>('reviews').findOne({ _id: reviewId as any, status: 'published' });
 
   if (!review) {
     notFound();
@@ -124,7 +124,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
         </article>
 
         <section className="mt-12">
-          <CommentSection reviewId={review._id.toString()} />
+          <CommentSection reviewId={review._id!.toString()} />
         </section>
       </div>
     </div>

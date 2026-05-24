@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { clientPromise } from '@/lib/mongodb';
-import { Poem } from '@/models/Poem';
+import { IPoem } from '@/models/Poem';
 import { PoemCard } from '@/components/poetry/PoemCard';
 import { Button } from '@/components/ui/button';
 import { Book } from 'lucide-react';
@@ -18,7 +18,7 @@ export default async function KobitaPage() {
   const db = client.db();
 
   const poems = await db
-    .collection<Poem>('poems')
+    .collection<IPoem>('poems')
     .find({ status: 'published' })
     .sort({ publishedAt: -1 })
     .toArray();
@@ -71,7 +71,7 @@ export default async function KobitaPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {poems.map((poem) => (
-              <PoemCard key={poem._id.toString()} poem={poem} />
+              <PoemCard key={poem._id!.toString()} poem={poem} />
             ))}
           </div>
         )}

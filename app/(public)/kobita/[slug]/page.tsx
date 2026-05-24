@@ -124,7 +124,7 @@ export default async function PoemDetailPage({ params }: PageProps) {
         </article>
 
         <section className="mt-12">
-          <CommentSection poemId={poem._id.toString()} />
+          <CommentSection poemId={poem._id!.toString()} />
         </section>
       </div>
     </div>

@@ -12,7 +12,9 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {},
+  experimental: {
+    serverComponentsExternalPackages: ['@napi-rs/canvas'],
+  },
   async headers() {
     return [
       {

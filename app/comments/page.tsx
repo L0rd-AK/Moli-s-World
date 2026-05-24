@@ -28,7 +28,7 @@ export default async function CommentsPage() {
         ) : (
           <div className="space-y-4">
             {comments.map((comment) => (
-              <div key={comment._id.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
+              <div key={comment._id!.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="font-medium text-ink-200">{comment.author.name}</span>
                   <span className="text-xs text-ink-50">
