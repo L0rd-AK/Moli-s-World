@@ -7,7 +7,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { AuthProvider } from '@/lib/auth-provider';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
-import { PageTransition } from '@/components/page-transition';
+
 import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
@@ -82,7 +82,7 @@ export default function RootLayout({
           <AuthProvider>
             <Navigation />
             <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <PageTransition>{children}</PageTransition>
+              {children}
             </main>
             <Footer />
             <Analytics />
