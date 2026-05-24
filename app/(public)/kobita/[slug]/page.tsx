@@ -71,7 +71,7 @@ export default async function PoemDetailPage({ params }: PageProps) {
           কবিতার তালিকায় ফিরে যান
         </Link>
 
-        <article className="bg-white rounded-lg border border-cream-200 p-8 shadow-sm">
+        <article className="bg-cream-50 rounded-lg border border-cream-200 p-8 shadow-sm">
           <header className="mb-8 text-center">
             <h1 className="text-3xl md:text-4xl font-bold text-ink-200 bengali-text mb-4">
               {poem.title}

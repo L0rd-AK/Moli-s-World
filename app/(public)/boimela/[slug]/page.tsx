@@ -82,7 +82,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
           বইমেলায় ফিরে যান
         </Link>
 
-        <article className="bg-white rounded-lg border border-cream-200 p-8 shadow-sm">
+        <article className="bg-cream-50 rounded-lg border border-cream-200 p-8 shadow-sm">
           <div className="flex flex-col md:flex-row gap-8">
             {review.coverImage && (
               <div className="w-40 h-56 rounded-lg overflow-hidden shadow-md flex-shrink-0">

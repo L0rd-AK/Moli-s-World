@@ -24,6 +24,21 @@
     --input: #F5F0E6;
     --ring: #D4851A;
     --radius: 0.5rem;
+
+    --cream-50: 255 251 247;
+    --cream-100: 250 247 240;
+    --cream-200: 245 240 230;
+    --cream-300: 237 229 217;
+    --ink-50: 61 43 31;
+    --ink-100: 42 29 20;
+    --ink-200: 26 18 8;
+    --ink-300: 13 9 6;
+    --saffron-50: 254 240 195;
+    --saffron-100: 253 227 138;
+    --saffron-200: 249 200 70;
+    --saffron-300: 212 133 26;
+    --saffron-400: 184 106 20;
+    --saffron-600: 146 84 15;
   }
 
   .dark {
@@ -46,6 +61,21 @@
     --border: #2A1D14;
     --input: #2A1D14;
     --ring: #F9C846;
+
+    --cream-50: 26 18 8;
+    --cream-100: 13 9 6;
+    --cream-200: 42 29 20;
+    --cream-300: 61 43 31;
+    --ink-50: 237 229 217;
+    --ink-100: 245 240 230;
+    --ink-200: 250 247 240;
+    --ink-300: 255 251 247;
+    --saffron-50: 61 34 0;
+    --saffron-100: 92 52 0;
+    --saffron-200: 249 200 70;
+    --saffron-300: 249 200 70;
+    --saffron-400: 253 227 138;
+    --saffron-600: 212 133 26;
   }
 }
 
@@ -101,7 +131,7 @@
 .ProseMirror p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
-  color: #3D2B1F;
+  color: rgb(var(--ink-50));
   pointer-events: none;
   height: 0;
 }
@@ -134,7 +164,7 @@
 }
 
 .ProseMirror blockquote {
-  border-left: 4px solid #D4851A;
+  border-left: 4px solid rgb(var(--saffron-300));
   padding-left: 1rem;
   font-style: italic;
 }
@@ -161,14 +191,14 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #F5F0E6;
+  background-color: rgb(var(--cream-200));
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #D4851A;
+  background-color: rgb(var(--saffron-300));
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #B86A14;
+  background-color: rgb(var(--saffron-400));
 }

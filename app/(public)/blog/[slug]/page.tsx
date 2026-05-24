@@ -97,7 +97,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </Link>
 
         {/* Article */}
-        <article className="bg-white rounded-lg border border-cream-200 p-8 shadow-sm">
+        <article className="bg-cream-50 rounded-lg border border-cream-200 p-8 shadow-sm">
           {/* Header */}
           <header className="mb-8">
             <div className="flex items-center gap-2 mb-4">

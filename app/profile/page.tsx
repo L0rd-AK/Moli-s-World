@@ -128,7 +128,7 @@ export default function ProfilePage() {
           </div>
         )}
 
-        <div className="bg-white border border-cream-200 rounded-lg p-6">
+        <div className="bg-cream-50 border border-cream-200 rounded-lg p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-ink-200 mb-2">নাম</label>

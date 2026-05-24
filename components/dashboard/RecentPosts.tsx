@@ -7,7 +7,7 @@ interface RecentPostsProps {
 
 export function RecentPosts({ posts }: RecentPostsProps) {
   return (
-    <div className="rounded-lg border border-cream-200 bg-white p-6">
+    <div className="rounded-lg border border-cream-200 bg-cream-50 p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-ink-200">সাম্প্রতিক প্রবন্ধ</h3>
         <Link href="/dashboard/posts" className="text-sm text-saffron-300">

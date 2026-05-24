@@ -156,7 +156,7 @@ export default async function HomePage() {
           </div>
 
           {poems.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-lg border border-cream-200">
+            <div className="text-center py-12 bg-cream-50 rounded-lg border border-cream-200">
               <p className="bengali-text text-ink-100">কোনো কবিতা পাওয়া যায়নি।</p>
             </div>
           ) : (

@@ -6,7 +6,7 @@ interface RecentCommentsProps {
 
 export function RecentComments({ comments }: RecentCommentsProps) {
   return (
-    <div className="rounded-lg border border-cream-200 bg-white p-6">
+    <div className="rounded-lg border border-cream-200 bg-cream-50 p-6">
       <h3 className="text-lg font-semibold text-ink-200 mb-4">মডারেশন কিউ</h3>
       {comments.length === 0 ? (
         <p className="text-sm text-ink-100">কোনও পেন্ডিং মন্তব্য নেই।</p>

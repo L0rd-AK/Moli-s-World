@@ -10,7 +10,12 @@
       "PowerShell(git rm -r --cached node_modules/ .next/ .env 2>&1)",
       "Bash(npm run *)",
       "Bash(Start-Process *)",
-      "PowerShell(Get-NetTCPConnection *)"
+      "PowerShell(Get-NetTCPConnection *)",
+      "Bash(curl -sf http://localhost:3000 -o /dev/null)",
+      "Bash(npx playwright *)",
+      "Bash(timeout 60 bash -c 'until curl -sf http://localhost:3000 -o /dev/null 2>/dev/null; do sleep 2; done && echo \"server up\"')",
+      "PowerShell(node __test_theme.mjs)",
+      "PowerShell(Remove-Item -Recurse -Force .next -Confirm:$false)"
     ]
   }
 }

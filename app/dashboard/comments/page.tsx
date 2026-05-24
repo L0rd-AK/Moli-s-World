@@ -78,7 +78,7 @@ export default function DashboardCommentsPage() {
             <p className="text-ink-100">কোনও মন্তব্য পাওয়া যায়নি।</p>
           ) : (
             comments.map((comment) => (
-              <div key={comment._id!.toString()} className="bg-white border border-cream-200 rounded-lg p-4">
+              <div key={comment._id!.toString()} className="bg-cream-50 border border-cream-200 rounded-lg p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium text-ink-200">{comment.author.name}</p>

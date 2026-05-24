@@ -13,7 +13,7 @@ const statusConfig = {
 
 export function BackupStatus({ backups }: BackupStatusProps) {
   return (
-    <div className="rounded-lg border border-cream-200 bg-white p-6">
+    <div className="rounded-lg border border-cream-200 bg-cream-50 p-6">
       <h3 className="text-lg font-semibold text-ink-200 mb-4">ব্যাকআপ অবস্থা</h3>
       {backups.length === 0 ? (
         <p className="text-sm text-ink-100">কোনও ব্যাকআপ রেকর্ড নেই।</p>

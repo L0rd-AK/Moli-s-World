@@ -72,7 +72,7 @@ export default function DashboardSettingsPage() {
         <h1 className="text-3xl font-bold text-ink-200 bengali-text mb-6">সাইট সেটিংস</h1>
         <DashboardNav />
 
-        <form onSubmit={handleSubmit} className="space-y-4 bg-white border border-cream-200 rounded-lg p-6">
+        <form onSubmit={handleSubmit} className="space-y-4 bg-cream-50 border border-cream-200 rounded-lg p-6">
           <Input
             placeholder="সাইট নাম"
             value={form.siteName}

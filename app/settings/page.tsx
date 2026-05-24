@@ -104,7 +104,7 @@ export default function SettingsPage() {
           </div>
         )}
 
-        <div className="bg-white border border-cream-200 rounded-lg p-6">
+        <div className="bg-cream-50 border border-cream-200 rounded-lg p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <h3 className="text-lg font-medium text-ink-200 mb-4">নোটিফিকেশন</h3>
@@ -145,7 +145,7 @@ export default function SettingsPage() {
               <select
                 value={settings.language}
                 onChange={(e) => setSettings({ ...settings, language: e.target.value })}
-                className="w-full px-3 py-2 border border-cream-200 rounded-md bg-white text-ink-200 focus:outline-none focus:ring-2 focus:ring-saffron-300"
+                className="w-full px-3 py-2 border border-cream-200 rounded-md bg-cream-50 text-ink-200 focus:outline-none focus:ring-2 focus:ring-saffron-300"
               >
                 <option value="bn">বাংলা</option>
                 <option value="en">English</option>

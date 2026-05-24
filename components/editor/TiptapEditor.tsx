@@ -86,7 +86,7 @@ export function TiptapEditor({
   };
 
   return (
-    <div className={cn('rounded-lg border border-cream-200 bg-white', className)}>
+    <div className={cn('rounded-lg border border-cream-200 bg-cream-50', className)}>
       <div className="flex flex-wrap gap-1 border-b border-cream-200 p-2">
         <Button
           type="button"

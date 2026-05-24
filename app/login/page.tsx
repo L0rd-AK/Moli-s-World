@@ -23,7 +23,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12">
-      <div className="w-full max-w-md bg-white border border-cream-200 rounded-lg p-8 shadow-sm">
+      <div className="w-full max-w-md bg-cream-50 border border-cream-200 rounded-lg p-8 shadow-sm">
         <h1 className="text-2xl font-bold text-ink-200 mb-6 text-center">লগ ইন</h1>
 
         <Button

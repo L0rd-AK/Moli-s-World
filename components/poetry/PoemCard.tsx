@@ -28,7 +28,7 @@ export function PoemCard({ poem, featured = false }: PoemCardProps) {
 
   return (
     <div
-      className={`bg-white rounded-lg border border-cream-200 p-6 ${
+      className={`bg-cream-50 rounded-lg border border-cream-200 p-6 ${
         featured ? 'shadow-lg' : 'hover:shadow-md'
       } transition-shadow`}
     >
