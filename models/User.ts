@@ -6,7 +6,7 @@ export interface IUser {
   name: string;
   email: string;
   image?: string;
-  role: 'admin';
+  role: 'admin' | 'reader' | 'guest';
   passwordHash?: string;
   bio?: string;
   website?: string;
@@ -31,8 +31,8 @@ const UserSchema = new Schema<IUser>({
   },
   role: {
     type: String,
-    enum: ['admin'],
-    default: 'admin',
+    enum: ['admin', 'reader', 'guest'],
+    default: 'reader',
   },
   passwordHash: {
     type: String,
