@@ -3,7 +3,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { clientPromise } from '@/lib/mongodb';
 import { IComment } from '@/models/Comment';
-import { resend } from '@/lib/resend';
 import { ObjectId } from 'mongodb';
 
 interface RouteProps {
@@ -35,33 +34,6 @@ export async function PATCH(request: NextRequest, { params }: RouteProps) {
       { _id: commentId as any },
       { $set: { status, updatedAt: new Date() } }
     );
-
-    if (status === 'approved' && resend) {
-      const resendFrom = process.env.RESEND_FROM_EMAIL || 'Bengali Literature <notifications@bengaliliterature.com>';
-      const collection = comment.postId ? 'posts' : comment.poemId ? 'poems' : 'reviews';
-      const parentKey = comment.postId || comment.poemId || comment.reviewId;
-      if (parentKey) {
-        const lookupId = ObjectId.isValid(parentKey) ? new ObjectId(parentKey) : parentKey;
-        const parent = await db.collection(collection).findOne({ _id: lookupId as any });
-        const author = parent?.author;
-        if (author?.email) {
-          await resend.emails.send({
-            from: resendFrom,
-            to: [author.email],
-            subject: 'মন্তব্য অনুমোদিত হয়েছে',
-            html: `
-              <div style="font-family: 'Noto Serif Bengali', serif; line-height: 1.6;">
-                <h2 style="margin: 0 0 12px;">মন্তব্য অনুমোদিত হয়েছে</h2>
-                <p>${comment.author.name} লিখেছেন:</p>
-                <blockquote style="margin: 12px 0; padding-left: 12px; border-left: 3px solid #D4851A;">
-                  ${comment.content}
-                </blockquote>
-              </div>
-            `,
-          });
-        }
-      }
-    }
 
     return NextResponse.json({ message: 'Comment updated' });
   } catch (error) {

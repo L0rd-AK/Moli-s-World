@@ -2,11 +2,11 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { UserNav } from '@/components/user-nav';
-import { PenLine, BookOpen, Book, MessageSquare, LayoutDashboard } from 'lucide-react';
+import { PenLine, BookOpen, Book, User, LayoutDashboard, StickyNote, CalendarDays } from 'lucide-react';
 
 export function Navigation() {
   const { data: session } = useSession();
@@ -47,11 +47,25 @@ export function Navigation() {
               <span>বইমেলা</span>
             </Link>
             <Link
-              href="/comments"
+              href="/notes"
               className="text-ink-100 hover:text-saffron-300 transition-colors flex items-center space-x-1"
             >
-              <MessageSquare className="h-4 w-4" />
-              <span>মন্তব্য</span>
+              <StickyNote className="h-4 w-4" />
+              <span>নোটস</span>
+            </Link>
+            <Link
+              href="/journal"
+              className="text-ink-100 hover:text-saffron-300 transition-colors flex items-center space-x-1"
+            >
+              <CalendarDays className="h-4 w-4" />
+              <span>জার্নাল</span>
+            </Link>
+            <Link
+              href="/about"
+              className="text-ink-100 hover:text-saffron-300 transition-colors flex items-center space-x-1"
+            >
+              <User className="h-4 w-4" />
+              <span>পরিচিতি</span>
             </Link>
           </div>
 
@@ -71,13 +85,14 @@ export function Navigation() {
                 <UserNav />
               </>
             ) : (
-              <Button
-                onClick={() => signIn('google')}
-                size="sm"
-                className="bg-saffron-300 hover:bg-saffron-400 text-ink-200"
-              >
-                লগ ইন
-              </Button>
+              <Link href="/login">
+                <Button
+                  size="sm"
+                  className="bg-saffron-300 hover:bg-saffron-400 text-ink-200"
+                >
+                  লগ ইন
+                </Button>
+              </Link>
             )}
           </div>
         </div>

@@ -1,20 +1,19 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { PenLine, Book, BookOpen, ArrowRight } from 'lucide-react';
+import { PenLine, Book, ArrowRight } from 'lucide-react';
 import { PoemCard } from '@/components/poetry/PoemCard';
 import { BookshelfCard } from '@/components/books/BookshelfCard';
 import { clientPromise } from '@/lib/mongodb';
 import type { Post, Poem, Review } from '@/models';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
 
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const session = await getServerSession(authOptions);
-  const isAdmin = session?.user?.role === 'admin';
   const client = await clientPromise;
   const db = client.db();
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const settings = await db.collection('settings').findOne({ _id: 'site' as any });
 
   // Fetch recent published posts
   const posts = await db
@@ -47,10 +46,10 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-display-fluid font-display text-ink-200 mb-6">
-              বাংলা সাহিত্যের নতুন মেলা
+              {settings?.authorName || 'মলির দুনিয়া'}
             </h1>
             <p className="bengali-text text-lg md:text-xl text-ink-100 max-w-2xl mx-auto mb-8">
-              প্রবন্ধ, কবিতা, বই রিভিউ - সবই একসাথে। বাংলা সাহিত্যের জন্য একটি আধুনিক প্ল্যাটফর্ম।
+              {settings?.bio || 'প্রবন্ধ, কবিতা, বই রিভিউ - আমার লেখালেখির জগৎ।'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/blog">
@@ -203,25 +202,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section - Admin Only */}
-      {isAdmin && (
-        <section className="py-16 bg-saffron-300 text-ink-200">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-display font-bold mb-4">
-              আপনার লেখা শেয়ার করুন
-            </h2>
-            <p className="bengali-text text-lg mb-8 max-w-2xl mx-auto">
-              বাংলা সাহিত্যের সমৃদ্ধির জন্য আপনার অবদান রাখুন। রেজিস্টার করুন এবং আপনার লেখাগুলো প্রকাশ করুন।
-            </p>
-            <Link href="/dashboard">
-              <Button size="lg" className="bg-ink-200 hover:bg-ink-300 text-cream-50">
-                <BookOpen className="mr-2 h-5 w-5" />
-                <span>ড্যাশবোর্ডে যান</span>
-              </Button>
-            </Link>
-          </div>
-        </section>
-      )}
     </div>
   );
 }

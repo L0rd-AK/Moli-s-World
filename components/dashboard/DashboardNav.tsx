@@ -9,16 +9,18 @@ import {
   Book,
   BookOpen,
   MessageSquare,
-  HardDrive,
   Settings,
+  StickyNote,
+  CalendarDays,
 } from 'lucide-react';
 
 const navItems = [
   { href: '/dashboard/posts', label: 'ব্লগ', icon: PenLine },
   { href: '/dashboard/poems', label: 'কবিতা', icon: Book },
   { href: '/dashboard/reviews', label: 'বই রিভিউ', icon: BookOpen },
+  { href: '/dashboard/notes', label: 'নোটস', icon: StickyNote },
+  { href: '/dashboard/journal', label: 'জার্নাল', icon: CalendarDays },
   { href: '/dashboard/comments', label: 'মন্তব্য', icon: MessageSquare },
-  { href: '/dashboard/backup', label: 'ব্যাকআপ', icon: HardDrive },
   { href: '/dashboard/settings', label: 'সেটিংস', icon: Settings },
 ];
 

@@ -6,16 +6,11 @@ export interface IUser {
   name: string;
   email: string;
   image?: string;
-  role: 'admin' | 'reader' | 'guest';
+  role: 'admin';
   passwordHash?: string;
   bio?: string;
   website?: string;
   location?: string;
-  preferences?: {
-    emailNotifications?: boolean;
-    darkMode?: boolean;
-    language?: string;
-  };
   createdAt: Date;
   updatedAt: Date;
 }
@@ -36,8 +31,8 @@ const UserSchema = new Schema<IUser>({
   },
   role: {
     type: String,
-    enum: ['admin', 'reader', 'guest'],
-    default: 'reader',
+    enum: ['admin'],
+    default: 'admin',
   },
   passwordHash: {
     type: String,
@@ -50,9 +45,6 @@ const UserSchema = new Schema<IUser>({
   },
   location: {
     type: String,
-  },
-  preferences: {
-    type: Schema.Types.Mixed,
   },
   createdAt: {
     type: Date,

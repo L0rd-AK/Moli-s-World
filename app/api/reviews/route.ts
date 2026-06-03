@@ -3,7 +3,6 @@ import { clientPromise } from '@/lib/mongodb';
 import { IReview } from '@/models/Review';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { rateLimit } from '@/lib/ratelimit';
 import { sanitizeHtml } from '@/lib/sanitize';
 
 export async function GET(request: NextRequest) {
@@ -51,11 +50,6 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const rate = await rateLimit(request, 'reviews:create');
-    if (!rate.success) {
-      return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
-    }
-
     const session = await getServerSession(authOptions);
     if (!session || session.user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

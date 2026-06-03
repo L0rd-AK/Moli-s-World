@@ -39,8 +39,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="text-ink-100 hover:text-saffron-300 transition-colors">
-                  ড্যাশবোর্ড
+                <Link href="/about" className="text-ink-100 hover:text-saffron-300 transition-colors">
+                  পরিচিতি
                 </Link>
               </li>
             </ul>

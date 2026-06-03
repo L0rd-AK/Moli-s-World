@@ -24,20 +24,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center py-12">
       <div className="w-full max-w-md bg-cream-50 border border-cream-200 rounded-lg p-8 shadow-sm">
-        <h1 className="text-2xl font-bold text-ink-200 mb-6 text-center">লগ ইন</h1>
-
-        <Button
-          className="w-full bg-saffron-300 hover:bg-saffron-400 text-ink-200 mb-4"
-          onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
-        >
-          গুগল দিয়ে লগ ইন করুন
-        </Button>
-
-        <div className="flex items-center gap-3 text-sm text-ink-50 my-4">
-          <span className="flex-1 h-px bg-cream-200" />
-          অথবা
-          <span className="flex-1 h-px bg-cream-200" />
-        </div>
+        <h1 className="text-2xl font-bold text-ink-200 mb-6 text-center">অ্যাডমিন লগ ইন</h1>
 
         <form onSubmit={handleCredentialsLogin} className="space-y-4">
           <Input

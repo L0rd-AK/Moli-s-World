@@ -20,6 +20,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/blog`, lastModified: new Date() },
     { url: `${baseUrl}/kobita`, lastModified: new Date() },
     { url: `${baseUrl}/boimela`, lastModified: new Date() },
+    { url: `${baseUrl}/notes`, lastModified: new Date() },
+    { url: `${baseUrl}/journal`, lastModified: new Date() },
+    { url: `${baseUrl}/about`, lastModified: new Date() },
   ];
 
   posts.forEach((post) => {

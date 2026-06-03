@@ -3,7 +3,6 @@ import { clientPromise } from '@/lib/mongodb';
 import { IPoem } from '@/models/Poem';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { rateLimit } from '@/lib/ratelimit';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { stripHtml } from '@/lib/content';
 
@@ -52,11 +51,6 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const rate = await rateLimit(request, 'poems:create');
-    if (!rate.success) {
-      return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
-    }
-
     const session = await getServerSession(authOptions);
     if (!session || session.user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
