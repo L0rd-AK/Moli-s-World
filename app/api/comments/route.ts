@@ -4,7 +4,6 @@ import { IComment } from '@/models/Comment';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { sanitizeHtml } from '@/lib/sanitize';
-import { verifyTurnstile } from '@/lib/turnstile';
 import { ObjectId } from 'mongodb';
 
 export async function GET(request: NextRequest) {
@@ -42,33 +41,18 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ error: 'Login required to comment' }, { status: 401 });
+    }
+
     const body = await request.json();
-    const { content, postId, poemId, reviewId, parentId, authorName, authorEmail, turnstileToken } = body;
-    const guestName = (authorName || '').trim();
-    const guestEmail = (authorEmail || '').trim();
+    const { content, postId, poemId, reviewId, parentId } = body;
 
     if (!content || (!postId && !poemId && !reviewId)) {
       return NextResponse.json(
         { error: 'Content and parent ID are required' },
         { status: 400 }
       );
-    }
-
-    if (!session && (!guestName || !guestEmail)) {
-      return NextResponse.json(
-        { error: 'Guest name and email are required' },
-        { status: 400 }
-      );
-    }
-
-    if (!session) {
-      const verification = await verifyTurnstile(
-        turnstileToken || '',
-        request.ip || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-      );
-      if (!verification.success) {
-        return NextResponse.json({ error: 'Turnstile verification failed' }, { status: 400 });
-      }
     }
 
     const client = await clientPromise;
@@ -96,14 +80,13 @@ export async function POST(request: NextRequest) {
       reviewId: reviewId || undefined,
       parentId: parentId || undefined,
       author: {
-        name: session?.user?.name || guestName || 'Guest',
-        email: session?.user?.email || guestEmail || 'guest@example.com',
-        image: session?.user?.image || '',
-        userId: session?.user?.id || undefined,
+        name: session.user.name || '',
+        email: session.user.email || '',
+        image: session.user.image || '',
+        userId: session.user.id,
       },
-      isGuest: !session,
-      status: session?.user?.role === 'admin' ? 'approved' : 'pending',
-      turnstileToken: turnstileToken || undefined,
+      isGuest: false,
+      status: session.user.role === 'admin' ? 'approved' : 'pending',
       createdAt: new Date(),
       updatedAt: new Date(),
     };
